@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tambah Tanaman</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Form Tambah Tanaman</h1>
+    
+    <form id="formTambah">
+      <label>Nama Tanaman</label>
+      
+      <input type="text" id="namaTanaman" required />
+      
+      <label>Warna</label>
+      <input type="text" id="warna" required />
+      
+      <label>Jenis</label>
+      <select id="jenis">
+        <option value="perdu">Perdu</option>
+        <option value="kayu">Kayu</option>
+        <option value="herbal">Herbal</option>
+        
+      </select>
+      
+      <button type="submit">Simpan</button>
+    </form>
+    
+    <a href="daftar.html">Daftar Tanaman</a>
+  </div>
+  
+  <script src="autentikasi.js">
+
+</script>
+  
+  <script type="module">
+    import { tambahTanaman } from './main.js'
+    
+    const formTambah = document.getElementById('formTambah')
+    
+    formTambah.addEventListener('submit', function(e) {
+      e.preventDefault()
+      tambahTanaman()
+    })
+  </script>
+  
+</body>
+
+</html>

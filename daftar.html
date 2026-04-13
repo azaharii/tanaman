@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Daftar Tanaman</title>
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  
+  <h1>Daftar Tanaman</h1>
+  
+  <a href="index.html">Awal Halaman</a>
+  
+  <div class="container">
+    <a href="tambah.html" class="button">Tambah Tanaman</a>
+    <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Nama Tanaman</th>
+          <th>Warna</th>
+          <th>Jenis</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody id="tabelData"></tbody>
+    </table>
+  </div>
+  
+  <script src="autentikasi.js">
+    
+  </script>
+  
+  <script type="module">
+    import { daftarTanaman } from './main.js'
+    
+    // eksekusi fungsi menampilkan daftar tanaman
+    daftarTanaman()
+  </script>
+</body>
+
+</html>

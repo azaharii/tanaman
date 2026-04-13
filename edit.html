@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Edit tanaman</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="container">
+    <h1>form ubah Tanaman</h1>
+    
+    <form id="formedit">
+      <label>Nama Tanaman</label>
+      <input type="text" id="namaTanaman">
+      
+      <label>Warna</label>
+      <input type="text" id="warna">
+      
+      <label>Jenis</label>
+      <input type="text" id="jenis">
+      
+      <button id="tombol" type="submit">simpan</button>
+      <br><br>
+      <a href="daftar.html">daftar tanaman</a>
+    </form>
+  </div>
+  
+  <script src="autentikasi.js">
+
+</script>
+  
+  <script type="module">
+    import { ambildataTanaman,ubahdataTanaman } from './main.js'
+    
+    // mengambil id dari url
+    const urlparams = new URLSearchParams(window.location.search)
+    const idtanaman = urlparams.get('id')
+    
+    // mengambil data tanaman
+    const tanaman = await ambildataTanaman(idtanaman)
+    
+    // mengisi form
+    document.getElementById('namaTanaman').value = tanaman.namaTanaman
+    document.getElementById('warna').value = tanaman.warna
+    document.getElementById('jenis').value = tanaman.jenis
+    
+    const formubah = document.getElementById('formedit')
+    formubah.addEventListener('submit', function (e) {
+      e.preventDefault()
+
+      const namaTanaman = document.getElementById('namaTanaman').value
+      const warna = document.getElementById('warna').value
+      const jenis = document.getElementById('jenis').value
+
+      ubahdataTanaman(idtanaman, namaTanaman, warna, jenis)
+    })
+    
+  </script>
+</body>
+
+</html>

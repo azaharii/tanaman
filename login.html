@@ -18,6 +18,23 @@
     
     <button type="submit">Login</button>
   </form>
+  
+<div id="status"></div>
+<script type="module">
+      import { login } from './main.js'
+
+      const form = document.querySelector('form')
+      const statusDiv = document.getElementById('status')
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault()
+
+        const username = document.getElementById('username').value
+        const password = document.getElementById('password').value
+
+        await login(username, password)
+      })
+    </script>
 </body>
 
 </html>

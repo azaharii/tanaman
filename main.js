@@ -8,7 +8,9 @@ import {
   deleteDoc,
   updateDoc,
   doc,
-  getDoc
+  getDoc,
+  query,
+  where
 } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js"
 
 // CONFIG FIREBASE
@@ -25,6 +27,51 @@ const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
 const tanamanCollection = collection(db, "tanaman")
 
+// fungsi untuk login
+export async function login() {
+  const username = document.getElementById("username").value
+  const password = document.getElementById("password").value
+  
+  const q = query(
+    collection(db, "users"),
+    where("username", "==", username),
+    where("password", "==", password)
+  )
+  
+  const querySnapshot = await getDocs(collection(db, "users"))
+  
+  let ketemu = false
+  
+  querySnapshot.forEach((doc) => {
+    const data = doc.data()
+    
+    if (data.username === username && data.password === password) {
+      ketemu = true
+    }
+  })
+  
+  if (ketemu) {
+    // simpan status login di localStorage
+    localStorage.setItem("isLogin", "true")
+    
+    document.getElementById("status").innerText = "Login berhasil"
+    // redirect
+    window.location.href = "index.html"
+  } else {
+    document.getElementById("status").innerText = "Username atau password salah"
+  }
+}
+
+
+
+//  fungsi untuk logout 
+export function logout() {
+  // hapus status login dari localstorage
+  localStorage.removeItem("isLogin")
+  
+  // redirect ke halaman login
+  window.location.href = "login.html"
+}
 
 // ============ DAFTAR Tanaman =============
 export async function daftarTanaman() {
@@ -84,12 +131,12 @@ export async function daftarTanaman() {
 // ========= TAMBAH Tanaman ===========
 export async function tambahTanaman() {
   const namaTanaman = document.getElementById('namaTanaman').value
-  const warna  = document.getElementById('warna').value
+  const warna = document.getElementById('warna').value
   const jenis = document.getElementById('jenis').value
   
   await addDoc(tanamanCollection, {
     namaTanaman: namaTanaman,
-    warna : warna ,
+    warna: warna,
     jenis: jenis,
   })
   

@@ -16,10 +16,20 @@
   
   <ul>
     <li><a href="daftar.html">Daftar Tanaman</a></li>
+    <li><a href="#" id="logout">Logout</a></li>
   </ul>
-  <script src="autentikasi.js">
+  <script src="autentikasi.js"></script>
+  <script type="module">
+      import { logout } from './main.js'
+
+      const logoutLink = document.getElementById('logout')
+      logoutLink.addEventListener('click', (e) => {
+        e.preventDefault()
+        logout()
+      })
+    </script>
     
-  </script>
+  
 </body>
 
 </html>
